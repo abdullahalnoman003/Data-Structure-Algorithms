@@ -1,3 +1,5 @@
+// This code contains the basic operation of Stack.
+
 #include <stdio.h>
 #define MAX 8 //This stack will have maximum of 8 elements.
 int top = -1;
