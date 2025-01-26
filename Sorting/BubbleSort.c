@@ -23,7 +23,7 @@ int main()
 
     for (i = 0; i < size - 1; i++)
     {
-        for (j = 0; j < size - 1; j++)
+        for (j = 0; j < size - 1 - i; j++)
         {
             if (arr[j] > arr[j + 1]) // for decensing order just use "<"
             {
