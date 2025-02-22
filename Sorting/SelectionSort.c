@@ -1,23 +1,7 @@
 #include <stdio.h>
-int main()
-{
-    int size, i, j, temp, min;
-    printf("Enter Array size:");
-    scanf("%d", &size);
-    int arr[size];
-    printf("Enter Array Elements:");
 
-    for (i = 0; i < size; i++)
-    {
-        scanf("%d", &arr[i]);
-    }
-
-    printf("Array Before Sorting:");
-    for (i = 0; i < size; i++)
-    {
-        printf("%d ", arr[i]);
-    }
-    printf("\n");
+void SelectionSort(int arr[], int size){
+    int i,j, min, temp;
     for (i = 0; i < size - 1; i++)
     {
         min = i;
@@ -32,7 +16,32 @@ int main()
         arr[i] = arr[min];
         arr[min] = temp;
     }
-    printf("Array After Sorting:");
+
+}
+
+int main()
+{
+    int size, i;
+    printf("Enter Array size: ");
+    scanf("%d", &size);
+    int arr[size];
+    printf("Enter Array Elements: ");
+
+    for (i = 0; i < size; i++)
+    {
+        scanf("%d", &arr[i]);
+    }
+
+    printf("Array Before Sorting: ");
+    for (i = 0; i < size; i++)
+    {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+
+    SelectionSort(arr, size);
+    
+    printf("Array After Sorting: ");
     for (i = 0; i < size; i++)
     {
         printf("%d ", arr[i]);
