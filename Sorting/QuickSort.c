@@ -1,56 +1,65 @@
 #include <stdio.h>
-
-int Abdullah1(int Noman[], int low, int high) {
-    int pivot = Noman[high];
-    int i = low - 1;
-    int n_temp;
-
-    for (int j = low; j < high; j++) {
-        if (Noman[j] < pivot) {
+int Partition(int arr[], int low, int high)
+{
+    int pivot = arr[low], temp;
+    int i = low, j = high;
+    while (i < j)
+    {
+        while (arr[i] <= pivot)
+        {
             i++;
-            n_temp = Noman[i];
-            Noman[i] = Noman[j];
-            Noman[j] = n_temp;
+        }
+        while (arr[j] > pivot)
+        {
+            j--;
+        }
+        if (i < j)
+        {
+            temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
         }
     }
-
-    n_temp = Noman[i + 1];
-    Noman[i + 1] = Noman[high];
-    Noman[high] = n_temp;
-
-    return i + 1;
+    temp = arr[low];
+    arr[low] = arr[j];
+    arr[j] = temp;
+    return j;
 }
-
-void Abdullah(int Noman[], int low, int high) {
-    if (low < high) {
-        int pivot = Abdullah1(Noman, low, high);
-        Abdullah(Noman, low, pivot - 1);
-        Abdullah(Noman, pivot + 1, high);
+void QuickSort(int arr[], int low, int high)
+{
+    if (low < high)
+    {
+        int pivot = Partition(arr, low, high);
+        QuickSort(arr, low, pivot - 1);
+        QuickSort(arr, pivot + 1, high);
     }
 }
+int main()
+{
+    int size, i;
+    printf("Enter Array size: ");
+    scanf("%d", &size);
+    int arr[size];
+    printf("Enter Array Elements: ");
 
-int main() {
-    int n;
-    printf("Enter the array size: ");
-    scanf("%d", &n);
-
-    int Noman[n];
-    printf("Enter the array elements: ");
-    for (int i = 0; i < n; i++) {
-        scanf("%d", &Noman[i]);
+    for (i = 0; i < size; i++)
+    {
+        scanf("%d", &arr[i]);
     }
 
-    printf("Array Element Before Sorting: ");
-    for (int i = 0; i < n; i++) {
-        printf("%d, ", Noman[i]);
+    printf("Array Before Sorting: ");
+    for (i = 0; i < size; i++)
+    {
+        printf("%d ", arr[i]);
     }
+    printf("\n");
+    int low = 0, high = size - 1;
+    QuickSort(arr, low, high);
 
-    Abdullah(Noman, 0, n - 1);
-
-    printf("\nAfter Sorting the Array is: ");
-    for (int i = 0; i < n; i++) {
-        printf("%d, ", Noman[i]);
+    printf("Array After Sorting: ");
+    for (i = 0; i < size; i++)
+    {
+        printf("%d ", arr[i]);
     }
-
     return 0;
 }
